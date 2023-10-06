@@ -1,14 +1,15 @@
-import Navbar from '@/components/navbar';
+import MainLayout from '@/layouts/mainLayout';
 import { Button } from '@mui/material';
 
 export default function Index() {
   return (
     <>
-      <Navbar />
-      <div className='center'>
-        <h1>Добро пожаловать!</h1>
-        <h3>Здесь собраны лучшие треки!</h3>
-      </div>
+      <MainLayout>
+        <div className='center'>
+          <h1>Добро пожаловать!</h1>
+          <h3>Здесь собраны лучшие треки!</h3>
+        </div>
+      </MainLayout>
 
       <style jsx>
         {`
