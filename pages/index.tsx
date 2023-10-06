@@ -1,8 +1,10 @@
+import Navbar from '@/components/navbar';
 import { Button } from '@mui/material';
 
 export default function Index() {
   return (
     <>
+      <Navbar />
       <div className='center'>
         <h1>Добро пожаловать!</h1>
         <h3>Здесь собраны лучшие треки!</h3>
