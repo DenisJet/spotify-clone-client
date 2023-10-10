@@ -2,6 +2,7 @@ import { Card, Container, Grid, Step, StepLabel, Stepper } from '@mui/material';
 
 interface StepWrapperProps {
   activeStep: number;
+  children: any;
 }
 
 const steps = ['Информация о треке', 'Загрузите обложку', 'Загрузите трек'];
