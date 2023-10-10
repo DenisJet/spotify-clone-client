@@ -1,7 +1,7 @@
 import { Pause, PlayArrow, VolumeUp } from '@mui/icons-material';
 import { Grid, IconButton } from '@mui/material';
 import styles from '../styles/player.module.scss';
-import TrackProgress from './tarckProgress';
+import TrackProgress from './trackProgress';
 
 const Player = () => {
   const track = {
