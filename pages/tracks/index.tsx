@@ -36,7 +36,9 @@ export default function Index() {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
   const dispatch = store.dispatch as NextThunkDispatch;
   await dispatch(await fetchTracks());
+
+  return { props: {} };
 });

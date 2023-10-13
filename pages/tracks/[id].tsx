@@ -22,7 +22,12 @@ const TrackPage = () => {
         К списку
       </Button>
       <Grid container style={{ margin: '20px 0' }}>
-        <img src={track.picture} width={200} height={200} alt='track image' />
+        <img
+          src={'http://localhost:5000/' + track.picture}
+          width={200}
+          height={200}
+          alt='track image'
+        />
         <div style={{ marginLeft: 30 }}>
           <h1>Название трека - {track.name}</h1>
           <h2>Исполнитель - {track.artist}</h2>
