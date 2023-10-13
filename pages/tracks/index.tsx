@@ -1,24 +1,24 @@
 import TrackList from '@/components/trackList';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import MainLayout from '@/layouts/mainLayout';
+import { NextThunkDispatch, wrapper } from '@/store';
+import { fetchTracks } from '@/store/action-creators/track';
 import { ITrack } from '@/types/track';
 import { Box, Button, Card, Grid } from '@mui/material';
 import { useRouter } from 'next/router';
 
 export default function Index() {
   const router = useRouter();
-  const tracks: ITrack[] = [
-    {
-      _id: '1',
-      name: 'Трек 1',
-      artist: 'Исполнитель 1',
-      text: 'Какой то текст',
-      listens: 5,
-      audio: 'http://localhost:5000/audio/1c219521-ede2-4380-9c81-526c73a37e2b.mp3',
-      picture: 'http://localhost:5000/image/095a65ed-44f6-42d8-b196-cfb2a1daa8c7.png',
-      comments: [],
-    },
-  ];
+  const { tracks, error } = useTypedSelector((state) => state.track);
+
+  if (error) {
+    return (
+      <MainLayout>
+        <h1>{error}</h1>
+      </MainLayout>
+    );
+  }
+
   return (
     <MainLayout>
       <Grid container justifyContent='center'>
@@ -35,3 +35,8 @@ export default function Index() {
     </MainLayout>
   );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+  const dispatch = store.dispatch as NextThunkDispatch;
+  await dispatch(await fetchTracks());
+});
