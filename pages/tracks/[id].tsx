@@ -27,7 +27,10 @@ const TrackPage = ({ serverTrack }) => {
   };
 
   return (
-    <MainLayout>
+    <MainLayout
+      title={'Музыкальная площадка - ' + track.name + ' - ' + track.artist}
+      keywords={'Музыка, артисты, ' + track.name + ' - ' + track.artist}
+    >
       <Button onClick={() => router.push('/tracks')} variant={'outlined'} style={{ fontSize: 32 }}>
         К списку
       </Button>
