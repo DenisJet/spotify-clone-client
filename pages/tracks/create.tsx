@@ -12,7 +12,6 @@ const Create = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [picture, setPicture] = useState(null);
   const [audio, setAudio] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
   const name = useInput('');
   const artist = useInput('');
   const text = useInput('');
@@ -56,19 +55,9 @@ const Create = () => {
           </Grid>
         )}
         {activeStep === 1 && (
-          <>
-            <FileUpload setFile={setPicture} accept='image/*'>
-              <Button>Загрузите обложку</Button>
-            </FileUpload>
-            {imageUrl && (
-              <>
-                <Button variant='contained' color='error' onClick={onClickRemoveImage}>
-                  Удалить
-                </Button>
-                <img className={styles.image} src={`${BASEURL}${imageUrl}`} alt='Uploaded' />
-              </>
-            )}
-          </>
+          <FileUpload setFile={setPicture} accept='image/*'>
+            <Button>Загрузите обложку</Button>
+          </FileUpload>
         )}
         {activeStep === 2 && (
           <FileUpload setFile={setAudio} accept='audio/*'>

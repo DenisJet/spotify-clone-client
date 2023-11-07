@@ -22,8 +22,13 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
     playTrack();
   };
 
+  const handleClick = () => {
+    setActiveTrack(track);
+    router.push('/tracks/' + track._id);
+  };
+
   return (
-    <Card className={styles.track} onClick={() => router.push('/tracks/' + track._id)}>
+    <Card className={styles.track} onClick={handleClick}>
       <IconButton onClick={play}>{active ? <Pause /> : <PlayArrow />}</IconButton>
       <img width={70} height={70} src={`${BASEURL}${track.picture}`} />
       <Grid container direction='column' style={{ width: 200, margin: '0 20px' }}>

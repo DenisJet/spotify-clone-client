@@ -11,20 +11,10 @@ import { BASEURL } from '@/consts';
 let audio: any;
 
 const Player = () => {
-  const track = {
-    _id: '1',
-    name: 'Трек 1',
-    artist: 'Исполнитель 1',
-    text: 'Какой то текст',
-    listens: 5,
-    audio: 'http://localhost:5000/audio/1c219521-ede2-4380-9c81-526c73a37e2b.mp3',
-    picture: 'http://localhost:5000/image/095a65ed-44f6-42d8-b196-cfb2a1daa8c7.png',
-    comments: [],
-  };
-
   const { pause, volume, active, duration, currentTime } = useTypedSelector(
     (state) => state.player
   );
+
   const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack } =
     useAction();
 
