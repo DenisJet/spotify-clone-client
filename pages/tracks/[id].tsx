@@ -1,3 +1,4 @@
+import { BASEURL } from '@/consts';
 import { useInput } from '@/hooks/useInput';
 import MainLayout from '@/layouts/mainLayout';
 import { ITrack } from '@/types/track';
@@ -15,7 +16,7 @@ const TrackPage = ({ serverTrack }) => {
 
   const addComment = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/tracks/comment', {
+      const response = await axios.post(`${BASEURL}tracks/comment`, {
         username: username.value,
         text: text.value,
         trackId: track._id,
@@ -35,12 +36,7 @@ const TrackPage = ({ serverTrack }) => {
         К списку
       </Button>
       <Grid container style={{ margin: '20px 0' }}>
-        <img
-          src={'http://localhost:5000/' + track.picture}
-          width={200}
-          height={200}
-          alt='track image'
-        />
+        <img src={`${BASEURL}${track.picture}`} width={200} height={200} alt='track image' />
         <div style={{ marginLeft: 30 }}>
           <h1>Название трека - {track.name}</h1>
           <h2>Исполнитель - {track.artist}</h2>
@@ -70,7 +66,7 @@ const TrackPage = ({ serverTrack }) => {
 export default TrackPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const response = await axios.get('http://localhost:5000/tracks/' + params?.id);
+  const response = await axios.get(`${BASEURL}tracks/${params?.id}`);
   return {
     props: {
       serverTrack: response.data,

@@ -1,5 +1,6 @@
 import FileUpload from '@/components/fileUpload';
 import StepWrapper from '@/components/stepWrapper';
+import { BASEURL } from '@/consts';
 import { useInput } from '@/hooks/useInput';
 import MainLayout from '@/layouts/mainLayout';
 import { Button, Grid, TextField } from '@mui/material';
@@ -11,6 +12,7 @@ const Create = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [picture, setPicture] = useState(null);
   const [audio, setAudio] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
   const name = useInput('');
   const artist = useInput('');
   const text = useInput('');
@@ -27,7 +29,7 @@ const Create = () => {
       formData.append('picture', picture);
       formData.append('audio', audio);
       axios
-        .post('http://localhost:5000/tracks', formData)
+        .post(`${BASEURL}tracks`, formData)
         .then((resp) => router.push('/tracks'))
         .catch((e) => console.log(e));
     }
@@ -36,6 +38,7 @@ const Create = () => {
   const back = () => {
     setActiveStep((prev) => prev - 1);
   };
+
   return (
     <MainLayout>
       <StepWrapper activeStep={activeStep}>
@@ -53,9 +56,19 @@ const Create = () => {
           </Grid>
         )}
         {activeStep === 1 && (
-          <FileUpload setFile={setPicture} accept='image/*'>
-            <Button>Загрузите обложку</Button>
-          </FileUpload>
+          <>
+            <FileUpload setFile={setPicture} accept='image/*'>
+              <Button>Загрузите обложку</Button>
+            </FileUpload>
+            {imageUrl && (
+              <>
+                <Button variant='contained' color='error' onClick={onClickRemoveImage}>
+                  Удалить
+                </Button>
+                <img className={styles.image} src={`${BASEURL}${imageUrl}`} alt='Uploaded' />
+              </>
+            )}
+          </>
         )}
         {activeStep === 2 && (
           <FileUpload setFile={setAudio} accept='audio/*'>

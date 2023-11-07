@@ -40,14 +40,23 @@ export default function Index() {
     <MainLayout title={'Список треков - музыкальная площадка'}>
       <Grid container justifyContent='center'>
         <Card style={{ width: 900 }}>
-          <Box p={3}>
+          <Box p={2}>
             <Grid container justifyContent='space-between'>
               <h1>Список треков</h1>
-              <Button onClick={() => router.push('/tracks/create')}>Загрузить</Button>
+              <Button onClick={() => router.push('/tracks/create')} sx={{ fontWeight: 600 }}>
+                Загрузить
+              </Button>
             </Grid>
           </Box>
-          <TextField fullWidth value={query} onChange={search} />
-          <TrackList tracks={tracks} />
+          <Box p={2}>
+            <TextField
+              fullWidth
+              value={query}
+              onChange={search}
+              placeholder='введите название трека...'
+            />
+            <TrackList tracks={tracks} />
+          </Box>
         </Card>
       </Grid>
     </MainLayout>

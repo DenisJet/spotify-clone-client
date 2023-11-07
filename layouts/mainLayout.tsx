@@ -16,7 +16,9 @@ export default function MainLayout({ children, title, description, keywords }: a
         <title>{title || 'Музыкальная площадка'}</title>
         <meta
           name='description'
-          content={`Музыкальная площадка. Здесь каждый может оставить свой трек` + description}
+          content={`Музыкальная площадка. Здесь каждый может оставить свой трек ${
+            description ? description : ''
+          }.`}
         />
         <meta name='robots' content='index, follow' />
         <meta name='keywords' content={keywords || 'Музыка, треки, артисты'} />

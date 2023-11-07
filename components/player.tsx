@@ -6,6 +6,7 @@ import { useTypedSelector } from '@/hooks/useTypedSelector';
 import { pauseTrack, playTrack } from '../store/action-creators/player';
 import { useAction } from '@/hooks/useActions';
 import { useEffect } from 'react';
+import { BASEURL } from '@/consts';
 
 let audio: any;
 
@@ -38,7 +39,7 @@ const Player = () => {
 
   const setAudio = () => {
     if (active) {
-      audio.src = 'http://localhost:5000/' + active.audio;
+      audio.src = `${BASEURL}${active.audio}`;
       audio.volume = volume / 100;
       audio.onloadedmetadata = () => {
         setDuration(Math.ceil(audio.duration));
