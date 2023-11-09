@@ -56,12 +56,12 @@ const Create = () => {
         )}
         {activeStep === 1 && (
           <FileUpload setFile={setPicture} accept='image/*'>
-            <Button>Загрузите обложку</Button>
+            <Button sx={{ fontWeight: 600 }}>Загрузите обложку</Button>
           </FileUpload>
         )}
         {activeStep === 2 && (
           <FileUpload setFile={setAudio} accept='audio/*'>
-            <Button>Загрузите аудио</Button>
+            <Button sx={{ fontWeight: 600 }}>Загрузите аудио</Button>
           </FileUpload>
         )}
       </StepWrapper>

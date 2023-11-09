@@ -30,9 +30,8 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
 
   const handleDeleteClick = (evt: any) => {
     evt.stopPropagation();
-    console.log(track._id);
     if (window.confirm('Вы действительно хотите удалить трек?')) {
-      axios.delete(`${BASEURL}tracks/${track._id}`).then((resp) => router.push('/tracks'));
+      axios.delete(`${BASEURL}tracks/${track._id}`).then(() => router.push('/tracks'));
     }
   };
 
