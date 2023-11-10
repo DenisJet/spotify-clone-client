@@ -2,11 +2,11 @@ import { BASEURL } from '@/consts';
 import { useInput } from '@/hooks/useInput';
 import MainLayout from '@/layouts/mainLayout';
 import { ITrack } from '@/types/track';
-import { Button, Grid, TextField } from '@mui/material';
+import { Box, Button, Grid, TextField } from '@mui/material';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const TrackPage = ({ serverTrack }) => {
   const [track, setTrack] = useState<ITrack>(serverTrack);
@@ -46,19 +46,33 @@ const TrackPage = ({ serverTrack }) => {
       <h2>Слова в треке</h2>
       <p>{track.text}</p>
       <h2>Комментарии</h2>
-      <Grid container>
-        <TextField {...username} label='Ваше имя' fullWidth />
-        <TextField {...text} label='Текст комментария' fullWidth multiline rows={4} />
-        <Button onClick={addComment}>Отправить</Button>
-      </Grid>
       <div>
         {track.comments.map((comment) => (
           <div>
-            <div>Автор - {comment.username}</div>
-            <div>Комментарий - {comment.text}</div>
+            <div>Автор - {comment?.username}</div>
+            <div>Комментарий - {comment?.text}</div>
           </div>
         ))}
       </div>
+      <h2>Добавить комментарий</h2>
+      <Grid container style={{ marginBottom: 35 }}>
+        <TextField
+          style={{ marginBottom: 20 }}
+          {...username}
+          label='Ваше имя'
+          fullWidth
+          placeholder=''
+        />
+        <TextField
+          style={{ marginBottom: 10 }}
+          {...text}
+          label='Текст комментария'
+          fullWidth
+          multiline
+          rows={4}
+        />
+        <Button onClick={addComment}>Отправить</Button>
+      </Grid>
     </MainLayout>
   );
 };
